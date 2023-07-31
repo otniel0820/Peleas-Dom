@@ -142,9 +142,8 @@
 // }
 
 const navNames = document.querySelector('nav');
-navNames.style = 'display:flex; justify-content:space-around;'
-navNames.style.backgroundColor = '#778899';
-navNames.style.color = 'white';
+navNames.style = 'display:flex; justify-content:space-around; background-color:#778899; color:white'
+
 const heroe = document.querySelector('h3');
 const demonio = document.querySelector('h3').nextElementSibling;
 const main = document.querySelector('main');
@@ -201,19 +200,25 @@ function addEstadisticas(array, divId) {
     const targetDiv = document.getElementById(divId);
     
     array.forEach(element => {
+        const containerEstadisticas = document.createElement('div');
         const h4Estadisticas = document.createElement('h4');
         h4Estadisticas.textContent = element.key;
         const spanEstadisticas = document.createElement('span');
         spanEstadisticas.textContent = element.value;
+        h4Estadisticas.style.paddingRight = '30em'
 
-        targetDiv.appendChild(h4Estadisticas);
-        h4Estadisticas.appendChild(spanEstadisticas);
-        h4Estadisticas.style.display ='flex'
-        h4Estadisticas.style.justifyContent ='space-around'
-        h4Estadisticas.style.alignItems ='start'
+        targetDiv.appendChild(containerEstadisticas);
+        containerEstadisticas.appendChild(h4Estadisticas);
+        containerEstadisticas.appendChild(spanEstadisticas);
+        targetDiv.style.display ='flex'
+        targetDiv.style.flexDirection ='column'
+        targetDiv.style.justifyContent ='center'
+        
+        containerEstadisticas.style.display ='flex'
+        containerEstadisticas.style.alignItems ='center'
+        containerEstadisticas.style.justifyContent ='center'
         
         
-        h4Estadisticas.style.gap ='4em' 
     });
     
 }
