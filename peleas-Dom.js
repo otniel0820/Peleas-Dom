@@ -6,6 +6,10 @@
 //     ironBody: 8
 // }
 
+
+
+
+
 // let compañeros = ['Otniel', 'Oscar', 'Morales', 'Santiago', 'Javier'];
 
 // let profesores = ["Ángel", "Marcos", "Pedro", "Daniel", "Millard"];
@@ -140,35 +144,13 @@
 //         alert('Haz derrotado a las fuerzas del mal')
 //     }
 // }
-
+const body = document.querySelector('body');
+body.style = `display:flex; flex-direction:column;align-items:center;min-width:1000px;background-color:black`
 const navNames = document.querySelector('nav');
-navNames.style = 'display:flex; justify-content:space-around; background-color:#778899; color:white'
+navNames.style = 'display:flex; justify-content:space-around; background-color:#778899; color:white';
 
 const heroe = document.querySelector('h3');
 const demonio = document.querySelector('h3').nextElementSibling;
-const main = document.querySelector('main');
-const sectionEstadisticas = main.children[1];
-sectionEstadisticas.style.display= 'flex'
-sectionEstadisticas.style.justifyContent= 'space-around'
-sectionEstadisticas.style.border= '3px solid black'
-
-
-
-
-
-
-const articleEstadisticasH = sectionEstadisticas.children[0];
-
-articleEstadisticasH.style.width = '50%';
-articleEstadisticasH.style.borderRight = '3px solid black' 
-const divEstadisticasH = articleEstadisticasH.children
-divEstadisticasH[0].id = 'estadisticasH';
-const articleEstadisticasD = sectionEstadisticas.children[1];
-articleEstadisticasD.style.width = '50%'
-const divEstadisticasD = articleEstadisticasD.children;
-divEstadisticasD[0].id = 'estadisticasD';
-
-
 let heroeAl = ['Otniel', 'Oscar', 'Morales', 'Santiago', 'Javier'];
 
 let demonioAl = ["Ángel", "Marcos", "Pedro", "Daniel", "Millard"];
@@ -180,53 +162,146 @@ function nombreAleatoreo(array) {
 heroe.innerHTML = `Heroe: ${nombreAleatoreo(heroeAl)}`;
 demonio.innerHTML = `Rey demonio: ${nombreAleatoreo(demonioAl)}`;
 
+const secEst = document.getElementById('SectionEstadisticas');
+secEst.style = 'display:flex; justify-content:space-around; align-items: center;padding-top: 0.1em; gap: 0.1em';
+const articleEst = document.getElementsByClassName('container');
+articleEst[0].style = 'background-color:#deb887; border:1px solid black;display:flex; flex-direction:column; align-items:center;padding: 1em'
+articleEst[1].style = 'background-color:#deb887; border:1px solid black;display:flex; flex-direction:column; align-items:center;padding: 1em'
 
 
-const heroeAtributes = [
-    { key: 'Name: ', value: nombreAleatoreo(heroeAl) },
-    { key: 'HP: ', value: 50 },
-    { key: 'Str: ', value: 20 },
-    { key: 'Def: ', value: 5 }
+
+
+
+
+const estadisticasHeroes = [
+    { name: 'Name:', valueName: heroe.textContent },
+    { hp: 'HP:', valueHp: 50 },
+    { str: 'Str:', valueStr: 20 },
+    { def: 'Def:', valueDef: 5 }
 ];
-const demonioAtributes = [
-    { key: 'Name: ', value: nombreAleatoreo(demonioAl) },
-    { key: 'HP: ', value: 50 },
-    { key: 'Str: ', value: 10 },
-    { key: 'Def: ', value: 5 }
+
+const estadisticasDemonios = [
+    { name: 'Name:', valueName: demonio.textContent },
+    { hp: 'HP:', valueHp: 50 },
+    { str: 'Str:', valueStr: 10 },
+    { def: 'Def:', valueDef: 5 }
 ];
 
-function addEstadisticas(array, divId) {
-   
-    const targetDiv = document.getElementById(divId);
-    
-    array.forEach(element => {
-        const containerEstadisticas = document.createElement('div');
-        const h4Estadisticas = document.createElement('h4');
-        h4Estadisticas.textContent = element.key;
-        const spanEstadisticas = document.createElement('span');
-        spanEstadisticas.textContent = element.value;
-        h4Estadisticas.style.paddingRight = '30em'
+const barHp = document.getElementsByClassName('barHp');
+barHp[0].style = `background-color: green; width:${estadisticasHeroes[1].valueHp * 10 / 50}em; height: 0.5em; border:1px solid black`;
+barHp[1].style = `background-color: green; width: ${estadisticasDemonios[1].valueHp * 10 / 50}em; height: 0.5em; border:1px solid black`;
 
-        targetDiv.appendChild(containerEstadisticas);
-        containerEstadisticas.appendChild(h4Estadisticas);
-        containerEstadisticas.appendChild(spanEstadisticas);
-        targetDiv.style.display ='flex'
-        targetDiv.style.flexDirection ='column'
-        targetDiv.style.justifyContent ='center'
+
+function atributes(array, numero) {
+    const divEstadisticas = document.createElement('div');
+    divEstadisticas.style = 'display:flex; justfy-content: center; align-items:center; flex-direction:column';
+    for (let i = 0; i < array.length; i++) {
+
+        const divX = document.createElement('div');
+        divX.style = 'display: flex; justify-content: start; align-items:center; width: 100%; gap: 10em';
+        let estadisticas = Object.values(array[i]);
+        const h3Estadistica = document.createElement('h3');
+        const pEstadistica = document.createElement('p');
+        if (i === 1) {
+            if (array === estadisticasHeroes) {
+                pEstadistica.id = 'hpPHeroe'
+
+            }
+            else if (array === estadisticasDemonios) {
+                pEstadistica.id = 'hpPdemonio'
+
+            }
+        }
+        h3Estadistica.innerHTML = estadisticas[0];
+        h3Estadistica.style = `border-bottom: solid 1px #06202b;width:3em;`;
+        pEstadistica.innerHTML = estadisticas[1];
+        pEstadistica.style = `border-radius:1px;background-color:	#ffe4c4;width:10em;text-align:start;margin-top:2px`
+        divX.appendChild(h3Estadistica);
+        divX.appendChild(pEstadistica);
+        divEstadisticas.appendChild(divX);
+
+    };
+    articleEst[numero].appendChild(divEstadisticas);
+};
+
+atributes(estadisticasHeroes, 0);
+atributes(estadisticasDemonios, 1);
+
+const globalDaño = document.getElementById('globalDaño');
+const containerDaño = document.getElementsByClassName('containerDaño');
+const textDañoHeroe = document.getElementById('textDañoHeroe');
+const textDañoDemonio = document.getElementById('textDañoDemonio');
+const containerBtnAtack = document.getElementById('containerBtnAtack');
+const containerBtnHeroe = document.getElementById('containerBtnHeroe');
+const btnAtackH = document.getElementById('btnAtackHeroe');
+const selectHab = document.getElementById('selectHabilidaes');
+const btnAtackD = document.getElementById('btnAtackDemonio');
+
+globalDaño.style = 'display:flex; gap: 0.1em; padding-top: 0.1em'
+containerDaño[0].style = 'width:50%; border: 1px solid black; height: 10em; background-color: #dcdcdc; padding-left:0.9em';
+containerDaño[1].style = 'width:50%; border: 1px solid black; background-color: #dcdcdc; padding-left:0.9em';
+containerBtnAtack.style = 'display:flex; justify-content: space-around; align-items:center; padding-top: 3em'
+containerBtnHeroe.style = 'display:flex; gap:1em'
+selectHab.style = 'height:2em; background-color:#ffe4e1'
+
+
+
+let derrotado = false;
+let vidaEnemigoMax = 0;
+let segundaFase = 0
+
+function ataqueDemonio(heroeEst, demonioEst) {
+    let dañoDemonio = demonioEst[2].valueStr - heroeEst[3].valueDef
+    let restaVidaHeroe = heroeEst[1].valueHp -= dañoDemonio;
+    barHp[0].style.width = `${restaVidaHeroe * 10 / 50}em`;
+
+    document.getElementById('hpPHeroe').textContent -= dañoDemonio;
+    if (heroeEst[1].valueHp > 1) {
         
-        containerEstadisticas.style.display ='flex'
-        containerEstadisticas.style.alignItems ='center'
-        containerEstadisticas.style.justifyContent ='center'
-        
-        
-    });
-    
-}
+        textDañoDemonio.innerText += `${demonio.textContent} hecho ${dañoDemonio} de daño.\n`;
+    }
+    // if (segundaFase == 0) {
+    //     segundaFase = 1;
+    //     for (let i = 0; i < vidaEnemigoMax*2; i++) {
+    //         demonioEst[1].valueHp ++
+            
+    //     }
+    // }
+
+};
+
+function ataqueHeroe(heroeEst, demonioEst) {
+    let dañoHeroe = heroeEst[2].valueStr - demonioEst[3].valueDef
+
+    let restaVidaDemonio = demonioEst[1].valueHp -= dañoHeroe;
+    barHp[1].style.width = `${restaVidaDemonio * 10 / 50}em`;
+
+    document.getElementById('hpPdemonio').textContent -= dañoHeroe;
+
+    if (demonioEst[1].valueHp > 1) {
+        textDañoHeroe.innerText += `${heroe.textContent} ha hecho ${dañoHeroe} de daño.\n`;
+    }
+};
+btnAtackH.disabled = true
+
+btnAtackD.addEventListener('click', () => {
+    ataqueDemonio(estadisticasHeroes, estadisticasDemonios);
+    btnAtackD.disabled = true
+    btnAtackH.disabled = false
+});
+btnAtackH.addEventListener('click', () => {
+    ataqueHeroe(estadisticasHeroes, estadisticasDemonios);
+    btnAtackH.disabled = true;
+    btnAtackD.disabled = false;
+});
 
 
 
-addEstadisticas(heroeAtributes, 'estadisticasH');
-addEstadisticas(demonioAtributes, 'estadisticasD');
+
+
+
+
+
 
 
 

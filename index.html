@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <title>Peleas Dom</title>
 </head>
 <body>
@@ -14,28 +15,28 @@
         </nav>
         <main>
             <!-- ESTADÍSTICAS -->
-            <section>
-                <article>
-                    <div></div>
+            <section id="SectionEstadisticas">                
+                <article class="container">
+                    <div class="barHp"></div>
                 </article>
-                <article>
-                    <div></div>
+                <article class="container">
+                    <div class="barHp"></div>
                 </article>
             </section>
             <!-- MENSAJES DE DAÑO (LOGS) -->
-            <section>
-                <article>
-                    <p></p>
+            <section id="globalDaño">
+                <article class="containerDaño">
+                    <p id="textDañoHeroe"></p>
                 </article>
-                <article>
-                    <p></p>
+                <article class="containerDaño">
+                    <p id="textDañoDemonio"></p>
                 </article>
             </section>
             <!-- BOTONES DE ATAQUE Y DESPLEGABLE DE HABILIDADES -->
-            <section>
-                <div>
-                    <button>Attack!</button>
-                    <select name="habilities">
+            <section id="containerBtnAtack">
+                <div id="containerBtnHeroe">
+                    <button id="btnAtackHeroe">Attack!</button>
+                    <select name="habilities" id="selectHabilidaes">
                         <option value="">Habilities</option>
                         <optgroup label="Pasive">
                             <option value="health">Health</option>
@@ -49,7 +50,7 @@
                     </select>
                 </div>
                 <div>
-                    <button>Attack!</button>
+                    <button id="btnAtackDemonio">Attack!</button>
                 </div>
             </section>
             <section>
